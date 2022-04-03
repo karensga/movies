@@ -3,12 +3,16 @@ import styled from 'styled-components'
 export const Container = styled.div`
     width: auto;
     height: 300px;
-    margin: 0 7px;
+    margin: auto 7px;
     position: relative;
     background-color: transparent;
+    transition: all .3s ease;
+
+    &:hover {
+        /* height: 350px; */
+    }
 `
 export const Image = styled.img`
-    width: 100%;
     height: 100%;
 `
 
@@ -48,6 +52,6 @@ export const Genre = styled.span`
         color: white;
         background-color: transparent;
         cursor: pointer;
-        font-size:21px; 
+        font-size:14px; 
     }
 `

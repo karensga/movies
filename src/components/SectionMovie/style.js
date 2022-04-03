@@ -6,6 +6,7 @@ export const Section = styled.div`
     display: flex;
     flex-direction:column;
     overflow: auto;
+    margin-bottom:50px; 
     
     &.row {
         flex-direction:row;
@@ -15,21 +16,18 @@ export const Section = styled.div`
         -webkit-appearance: none;
     }
 
-   
-
-    
 `
 
 export const ContainerMovies = styled.div`
-    display: -webkit-box;
+    display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding-left: 50px;
-    margin-bottom:50px; 
+    padding-bottom: 0;
     position: relative;
-
+    
     &::-webkit-scrollbar {
         -webkit-appearance: none;
     }

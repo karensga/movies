@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 
 import SectionMovie from '../../components/SectionMovie'
+import ContextConfig from '../../context/config'
+
+import InfoMovie from '../../components/InfoMovie'
 
 const Home = () => {
+  const { setGenres } = useContext(ContextConfig)
+
   const [moviesTrending, setMovieTrending] = useState([])
   const [moviesAction, setMovieAction] = useState([])
   const [moviesComedy, setMovieComedy] = useState([])
@@ -15,6 +20,10 @@ const Home = () => {
   const [moviesHorror, setMovieHorror] = useState([])
 
   useEffect(() => {
+    fetch('https://api.themoviedb.org/3/genre/movie/list?api_key=40248d8fb6690b905d0e85d951e9d910')
+      .then(res => res.json())
+      .then(res => setGenres(res.genres))
+
     fetch('https://api.themoviedb.org/3/trending/all/week?api_key=40248d8fb6690b905d0e85d951e9d910', {
       method: 'GET'
     }).then(res => res.json())
@@ -80,8 +89,11 @@ const Home = () => {
       })
   }, [])
 
+  /*   console.log(genres.find(genre => genre.id === 36).name) */
+
   return (
     <>
+    <InfoMovie/>
     <SectionMovie
       title={'Lo más visto'}
       row={true}

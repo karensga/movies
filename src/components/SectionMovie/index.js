@@ -33,6 +33,7 @@ const SectionMovie = ({ title, row = false, info, subTitle, movies, poster = tru
               key={movie.id}
               poster={poster}
               title={movie.original_title}
+              genresIds={movie.genre_ids}
               image={`https://image.tmdb.org/t/p/w1280${poster ? movie.poster_path : movie.backdrop_path}`}
             />)
           }
