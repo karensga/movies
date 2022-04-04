@@ -1,24 +1,31 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import PropTypes from 'prop-types'
 
-import { Container, SectionAbout, Title, About, ContainerMain, TitleInfo, B, Info, Label, Description, Image } from './style'
+import ContextConfig from '../../context/config'
+import { Container, SectionAbout, Title, About, ContainerMain, TitleInfo, B, Info, Label, Description, Image, ButtonClose, I, Hr, ContainerImage, ImageDeg } from './style'
 
-const InfoMovie = ({ id }) => {
+const InfoMovie = ({ open }) => {
   const [movie, setMovue] = useState({})
+  const { movieId, toggleInfoMovie } = useContext(ContextConfig)
+
   useEffect(() => {
-    fetch('https://api.themoviedb.org/3/movie/634649?api_key=40248d8fb6690b905d0e85d951e9d910&language=en-US')
+    fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=40248d8fb6690b905d0e85d951e9d910&language=en-US`)
       .then(res => res.json())
       .then(res => setMovue(res))
-  }, [])
+  }, [movieId])
 
   return (
-    <Container>
+    <Container open={open}>
         <ContainerMain>
-            <Image src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}/>
+            <ButtonClose onClick={toggleInfoMovie}><I className="fa-solid fa-xmark"></I></ButtonClose>
+            <ContainerImage>
+                <Image src={`https://image.tmdb.org/t/p/w1280${movie?.backdrop_path}`}/>
+                <ImageDeg/>
+            </ContainerImage>
             <SectionAbout>
                 <Title>{movie.original_title}</Title>
                 <About>{movie.overview}</About>
-                <hr></hr>
+                <Hr></Hr>
                 <TitleInfo>Info on <B>{movie.original_title}</B></TitleInfo>
                 <Info>
                     <Label>Genres: </Label>
@@ -47,7 +54,7 @@ const InfoMovie = ({ id }) => {
 }
 
 InfoMovie.propTypes = {
-  id: PropTypes.number
+  open: PropTypes.bool
 }
 
 export default InfoMovie

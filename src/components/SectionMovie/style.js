@@ -6,7 +6,7 @@ export const Section = styled.div`
     display: flex;
     flex-direction:column;
     overflow: auto;
-    margin-bottom:50px; 
+    margin:25px 0; 
     
     &.row {
         flex-direction:row;

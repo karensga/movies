@@ -5,8 +5,10 @@ import ContextConfig from '../../context/config'
 
 import InfoMovie from '../../components/InfoMovie'
 
+import { MainMovie, FilterDeg, TitleBanner, DescriptionBanner, InfoBanner, Panel } from './style'
+
 const Home = () => {
-  const { setGenres } = useContext(ContextConfig)
+  const { setGenres, isEnableInfoMovie } = useContext(ContextConfig)
 
   const [moviesTrending, setMovieTrending] = useState([])
   const [moviesAction, setMovieAction] = useState([])
@@ -93,7 +95,15 @@ const Home = () => {
 
   return (
     <>
-    <InfoMovie/>
+    <MainMovie src={`https://image.tmdb.org/t/p/original${moviesHistory[4]?.backdrop_path}`}>
+      <FilterDeg/>
+      <InfoBanner>
+        <TitleBanner>{moviesHistory[4]?.original_title}</TitleBanner>
+        <DescriptionBanner>{moviesHistory[4]?.overview}</DescriptionBanner>
+      </InfoBanner>
+      <Panel/>
+    </MainMovie>
+    <InfoMovie open={isEnableInfoMovie}/>
     <SectionMovie
       title={'Lo más visto'}
       row={true}

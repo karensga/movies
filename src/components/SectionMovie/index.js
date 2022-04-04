@@ -1,13 +1,21 @@
-import React, { useRef } from 'react'
+import React, { useRef, useContext } from 'react'
 
 import PropTypes from 'prop-types'
 
 import MovieCard from '../MovieCard'
+import ContextConfig from '../../context/config'
 
 import { Section, Title, ContainerMovies, SectionTitle, Span, Info, ButtonMax, ButtonLeft, ButtonRight } from './style'
 
 const SectionMovie = ({ title, row = false, info, subTitle, movies, poster = true }) => {
   const ref = useRef()
+  const { toggleInfoMovie, setMovieId } = useContext(ContextConfig)
+
+  const handleActionMovie = (id) => {
+    setMovieId(id)
+    toggleInfoMovie()
+  }
+
   return (
     <Section className={`${row && 'row'}`} >
       <ButtonLeft onClick={() => {
@@ -34,6 +42,7 @@ const SectionMovie = ({ title, row = false, info, subTitle, movies, poster = tru
               poster={poster}
               title={movie.original_title}
               genresIds={movie.genre_ids}
+              onAction={() => handleActionMovie(movie.id)}
               image={`https://image.tmdb.org/t/p/w1280${poster ? movie.poster_path : movie.backdrop_path}`}
             />)
           }
