@@ -18,6 +18,12 @@ export const Header = styled.header`
     font-size:21px;
     font-weight: 800;
     color: white; 
+    transition: all .3s ease;
+    z-index:30;
+
+    &.sticky {
+        background: #141414;
+    }
 `
 
 export const Nav = styled.nav`
@@ -38,10 +44,12 @@ export const Li = styled.li`
     text-decoration: none;
     margin-left: 20px; 
     font-weight: 400;
+    cursor:pointer;
 `
 
 export const Search = styled.ul`
-background-color:transparent; 
+    background-color:transparent; 
+    margin-left:auto;
 
 `
 

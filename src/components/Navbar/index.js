@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 import { Header, Nav, Name, Ul, Li, Search, I } from './style'
 
 const Navbar = () => {
+  const [scroll, setScroll] = useState()
+  useEffect(() => {
+    document.addEventListener('scroll', () => {
+      setScroll(window.scrollY)
+    })
+
+    return () => {
+      document.removeEventListener('scroll', () => {
+        setScroll(window.scrollY)
+      })
+    }
+  })
+
   return (
-    <Header>
+    <Header className={`${scroll > 0 && 'sticky'}`}>
         <Name>MOVIE</Name>
         <Nav>
             <Ul>
